@@ -15,8 +15,8 @@ df = load_data()
 
 
 custom_widget_look = {
-						'Category': 'multiselect',
-						'Sub Category': 'multiselect'
+						'category': 'multiselect',
+						'sub_category': 'multiselect'
 
 
 }
