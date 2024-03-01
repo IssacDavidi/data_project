@@ -27,7 +27,7 @@ def load_df(csv_loc):
     df = pd.read_csv(csv_loc)
     return df
 
-df = load_df('https://github.com/IssacDavidi/data_project/blob/main/steimatzky_cleaned.csv')
+df = load_df('https://raw.githubusercontent.com/IssacDavidi/data_project/blob/main/steimatzky_cleaned.csv')
 
 
 #Data table toggle
