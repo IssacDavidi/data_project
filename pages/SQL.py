@@ -9,4 +9,4 @@ conn = st.connection("supabase",type=SupabaseConnection)
 # SQL query
 rows = conn.query("*", table="books", ttl="10m").execute()
 
-st.write(rows)
+st.write(rows.data)
