@@ -6,5 +6,6 @@ pandasql
 plotly
 SQLAlchemy
 st_supabase_connection
+st_supabase_client
 streamlit
 streamlit_pandas
