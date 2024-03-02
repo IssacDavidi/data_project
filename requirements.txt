@@ -5,6 +5,5 @@ pandas
 pandasql
 plotly
 SQLAlchemy
-psycopg2
 streamlit
 streamlit_pandas
