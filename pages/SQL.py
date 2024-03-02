@@ -3,12 +3,13 @@ from st_supabase_connection import SupabaseConnection
 import pandas as pd
 import sqlalchemy
 
-# Initialize connection.
-conn = st.connection("supabase",type=SupabaseConnection)
+@st.cache_data
+def sql_query(txt):
+    conn = SupabaseConnection()  # Use SupabaseConnection to create a connection
+    df = conn.query(txt)
+    return df
 
-# Perform query.
-rows = conn.query("*", table="books", ttl="10m").execute()
-
-# Print results.
-for row in rows.data:
-    st.write(f"{row['name']} has a :{row['pet']}:")
+query = st.text_area('Explore the data by running SQL queries', 'SELECT * FROM books;')
+if st.button('Run Query'):
+    result = sql_query(query)
+    st.dataframe(result)
