@@ -6,7 +6,7 @@ import sqlalchemy
 
 @st.cache_data
 def sql_query(txt):
-    conn = st.connection('project_books', type= SupabaseConnection)
+    conn = st.connection('books', type= SupabaseConnection)
     df = conn.query(txt)
     return df
 
