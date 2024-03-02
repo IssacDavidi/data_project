@@ -5,10 +5,10 @@ import sqlalchemy
 
 
 @st.cache_data
-def sql_query(txt):
+def sql_query(txt, table_name='books'):
     # Use SupabaseConnection and provide the URL and API key
-    conn = st.connection("supabase",type=SupabaseConnection)
-    df = conn.query(txt)
+    conn = st.connection("supabase", type=SupabaseConnection)
+    df = conn.query(txt, table=table_name)
     return df
 
 query = st.text_area('Explore the data by running SQL queries', 'SELECT * FROM books;')
