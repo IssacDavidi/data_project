@@ -43,7 +43,7 @@ if st.button('Toggle Data Table'):
 if st.session_state.show_data_table:
     st.dataframe(df)
     with st.expander('About the data table'):
-        st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat2.jpg?raw=true', width=30')
+        st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat2.jpg?raw=true', width=30)
         st.write('The information obtained from the Steimatzky website underwent a web scraping procedure. This dataset comprises 978 books, each available in both physical and digital formats. Any missing values were filled with averages.')
 
 
