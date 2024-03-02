@@ -7,4 +7,4 @@ plotly==5.9.0
 SQLAlchemy==2.0.25
 streamlit==1.30.0
 streamlit_pandas==0.0.9
-st-supabase-connection==1.2.2
+st_supabase_connection==1.2.2
