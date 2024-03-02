@@ -21,7 +21,7 @@ custom_widget_look = {
 
 }
 
-ignore_columns = ['description]
+ignore_columns = ['description']
 
 all_widgets = sp.create_widgets(df, custom_widget_look, ignore_columns=ignore_columns)
 res = sp.filter_df(df, all_widgets)
