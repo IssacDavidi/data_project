@@ -5,7 +5,7 @@ import sqlalchemy
 
 @st.cache_data
 def sql_query(txt):
-    conn = SupabaseConnection()  # Use SupabaseConnection to create a connection
+    conn = SupabaseConnection("superbase",type=SuperbaseConnection)  # Use SupabaseConnection to create a connection
     df = conn.query(txt)
     return df
 
