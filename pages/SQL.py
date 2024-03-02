@@ -3,8 +3,8 @@ from sqlalchemy import create_engine
 import pandas as pd
 
 # Retrieve Supabase URL and API key from Streamlit secrets
-supabase_url = st.secrets["SUPABASE_URL"]
-supabase_key = st.secrets["SUPABASE_KEY"]
+supabase_url = st.secrets["connections.supabase.SUPABASE_URL"]
+supabase_key = st.secrets["connections.supabase.SUPABASE_KEY"]
 
 # Create a SQLAlchemy engine
 engine = create_engine(f"postgresql://{supabase_key}@{supabase_url}/postgres")
