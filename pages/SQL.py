@@ -4,5 +4,5 @@ import pandas as pd
 import os
 
 
-st.write('Comming soon')
+st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat1.jpg', 'A beautiful cat')
 
