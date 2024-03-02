@@ -9,4 +9,4 @@ conn = st.connection("supabase",type=SupabaseConnection)
 # Create a df
 df = conn.query("*", table="books", ttl="10m").execute()
 
-st.dataframe(df)
+st.dataframe(df[1])
