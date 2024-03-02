@@ -9,7 +9,7 @@ conn = st.connection("supabase",type=SupabaseConnection)
 custom_query = "SELECT * FROM books"
 
 # SQL query
-data = conn.query(custom_query, ttl="10m").execute().data
+data = conn.query(custom_query,table='books', ttl="10m").execute().data
 
 df = pd.DataFrame(data)
 
