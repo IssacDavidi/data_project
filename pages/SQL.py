@@ -4,5 +4,5 @@ import pandas as pd
 import os
 
 
-st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat1.jpg?raw=true', 'A beautiful cat', height = 400)
+st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat1.jpg?raw=true', 'A beautiful cat', width=400)
 
