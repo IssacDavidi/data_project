@@ -10,6 +10,7 @@ supabase_key = st.secrets["db_password"]
 # Create a SQLAlchemy engine
 engine = create_engine(f"postgresql://{supabase_key}@{supabase_url}/postgres")
 
+
 # Custom SQL query
 custom_query = "SELECT * FROM books"
 
