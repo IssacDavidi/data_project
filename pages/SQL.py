@@ -7,7 +7,6 @@ import pandas as pd
 conn = st.connection("supabase",type=SupabaseConnection)
 
 # SQL query
-rows = conn.query("*", table="books", ttl="10m").execute()
+df = conn.query("*", table="books", ttl="10m").execute().data
 
-for row in rows.data:
-  st.write(row)
+st.write(df)
