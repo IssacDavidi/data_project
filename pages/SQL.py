@@ -3,6 +3,7 @@
 import streamlit as st
 import pandas as pd
 import sqlalchemy
+from st_supabase_connection import SupabaseConnection
 
 @st.cache_data
 def sql_query(txt):
