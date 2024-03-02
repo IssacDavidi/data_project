@@ -1,5 +1,6 @@
 import streamlit as st
 from st_supabase_connection import SupabaseConnection
+from st_supabase_client import StSupabaseClient
 import pandas as pd
 
 # Initialize Supabase client
