@@ -155,7 +155,7 @@ if st.button('Toggle insights'):
 
 # Show or hide data table based on button state
 if st.session_state.show_insights:
-    st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat3.png?raw=true', width = 160)
+    st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat3.png?raw=true', width = 200)
     # Header 1
     st.header('Data insights')
 
