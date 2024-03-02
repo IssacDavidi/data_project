@@ -6,7 +6,7 @@ import os
 
 
 
-col1, col2, col3 = st.columns((1,1,2)
+col1, col2, col3 = st.columns((1,1,2))
 
 with col1:
   st.subheader('Lorem ipsum dolor sit amet')
