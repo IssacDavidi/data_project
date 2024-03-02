@@ -4,7 +4,7 @@ import pandas as pd
 import sqlalchemy
 
 
-@st.cache_data
+
 def sql_query(txt):
     # Use SupabaseConnection and provide the URL and API key
     conn = st.connection("supabase", type=SupabaseConnection)
