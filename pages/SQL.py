@@ -1,11 +1,12 @@
 import streamlit as st
 from st_supabase_connection import SupabaseConnection
+import pandas as pd
+
 
 # Initialize connection.
 conn = st.connection("supabase",type=SupabaseConnection)
 
-# Perform query.
-rows = conn.query("*", table="books", ttl="10m").execute()
+# Create a df
+df = conn.query("*", table="books", ttl="10m").execute()
 
-for row in rows:
-    st.write(row)
+st.dataframe(df)
