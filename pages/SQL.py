@@ -7,6 +7,6 @@ import pandas as pd
 conn = st.connection("supabase",type=SupabaseConnection)
 
 # Create a df
-df = conn.query(table='books).select(*)
+df = conn.query(table='books).data
 
 st.dataframe(df)
