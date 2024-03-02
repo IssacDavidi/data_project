@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 import streamlit_pandas as sp
-from pandasql import sqldf
+import pandasql as ps
 
 
 st.title('Explore the data on your own!')
@@ -27,7 +27,11 @@ all_widgets = sp.create_widgets(df, custom_widget_look, ignore_columns=ignore_co
 res = sp.filter_df(df, all_widgets)
 st.write(res)
 
+result = '''
+select * from df
 
+'''
+st.write(ps.sqldf(result))
 
 # Create an adventure button and style it
 
