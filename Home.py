@@ -158,21 +158,24 @@ if st.button('Toggle insights'):
 if st.session_state.show_insights:
     # Header 1
     st.header('Data insights')
+    with st.container:
+        X
+        
 
-    mcol1, mcol2, mcol3, mcol4= st.columns(4) # Metrics columns
-    #Physical Copies
-    with mcol1:
-        st.metric(label='Physical Copy', value = '97₪')
+        mcol1, mcol2, mcol3, mcol4= st.columns(4) # Metrics columns
+        #Physical Copies
+        with mcol1:
+            st.metric(label='Physical Copy', value = '97₪')
 
-    with mcol2:
-        st.metric(label='Sale Price', value = '77₪', delta = '-20.6%', delta_color='inverse')
+        with mcol2:
+            st.metric(label='Sale Price', value = '77₪', delta = '-20.6%', delta_color='inverse')
 
-    #Digital
-    with mcol3:
-        st.metric(label='Digital Copy', value = '42₪', delta = '-56.7%', delta_color='inverse')
+        #Digital
+        with mcol3:
+            st.metric(label='Digital Copy', value = '42₪', delta = '-56.7%', delta_color='inverse')
 
-    with mcol4:
-        st.metric(label='Digital Sale', value = '33₪', delta= '-65.9%', delta_color='inverse')
+        with mcol4:
+            st.metric(label='Digital Sale', value = '33₪', delta= '-65.9%', delta_color='inverse')
 
 
 
