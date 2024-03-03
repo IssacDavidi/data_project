@@ -116,7 +116,7 @@ plots_df.columns = ['author', 'count']
 
 fig3 = px.pie(plots_df[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
 fig3.update_layout(
-    title='Top 5 Authors with the most published books',
+    title='Top 5 Authors with the\n most published books',
     xaxis_title='',
     yaxis_title='',
     plot_bgcolor='white',
