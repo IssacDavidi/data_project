@@ -74,8 +74,6 @@ fig1.update_layout(
     title='Average Prices of Books',
     xaxis_title='',
     yaxis_title='',
-    width=600,
-    height=300,
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
     legend=dict(y=1)
@@ -99,8 +97,6 @@ fig2.update_layout(
     title='Count Category',
     xaxis_title='',
     yaxis_title='',
-    width=600,
-    height=300,
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
     legend=dict(y=0.95,x=1)
@@ -116,7 +112,7 @@ plots_df = df.groupby('author').count()['name'].sort_values(ascending=False).res
 plots_df.columns = ['author', 'count']
 
 fig3 = px.pie(plots_df[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
-fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',plot_bgcolor = 'white',width=600, height=300,legend=dict(y=0.95,x=0))
+fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',plot_bgcolor = 'white',legend=dict(y=0.95,x=0))
 
 # Add black marker line color
 fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
@@ -130,8 +126,6 @@ fig4 = px.pie(plots_df, names = 'sub_category', values = 'name', color_discrete_
 
 fig4.update_layout(title='Sub Category Count', xaxis_title='',
     yaxis_title='',
-    width=600,
-    height=300,
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
     legend=dict(y=0.95,x=1)
