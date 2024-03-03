@@ -171,11 +171,11 @@ if st.session_state.show_insights:
     col1, col2= st.columns(2)
     with col1:
         st.subheader('Pie Charts')
-        st.plotly_chart(fig3, use_container_width=True) # Top authors
-        st.plotly_chart(fig4, use_container_width=True) #Sub Category Count
+        st.plotly_chart(fig3, use_container_width=False) # Top authors
+        st.plotly_chart(fig4, use_container_width=False) #Sub Category Count
         st.subheader('Bar Charts')
-        st.plotly_chart(fig1, use_container_width=True) #Physical VS Digital
-        st.plotly_chart(fig2, use_container_width=True) # Count Categories
+        st.plotly_chart(fig1, use_container_width=False) #Physical VS Digital
+        st.plotly_chart(fig2, use_container_width=False) # Count Categories
 
 
     
