@@ -56,86 +56,93 @@ st.write("<br>", unsafe_allow_html=True) # Spacing
 
 h = 600
 w = 300
+#Plot 1 - Average prices of books
 
 plots_df = pd.DataFrame()
-
 #Average price Normal VS Membership
 plots_df['Normal'] = df['price_physical']
 plots_df['Membership'] = df['price_club_physical']
 group = ['Normal','Membership']
 
-fig1 = px.bar(
-    plots_df[['Normal', 'Membership']].mean(),
-    orientation='h',
-    width=800,
-    height=400,
-    color=group,
-    color_discrete_map={'Normal': 'coral', 'Membership': '#007777'}
-)
+fig1 = px.bar(plots_df[['Normal', 'Membership']].mean(), orientation='h',  
+             width=800, height=400,
+            color = group,color_discrete_map = {'Normal': 'coral', 'Membership': '#007777'})
+
+# Update the layout for better appearance
+
 fig1.update_layout(
     title='Average Prices of Books',
     xaxis_title='',
     yaxis_title='',
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
-    width=w,
-    height=h,
+    width= w,
+    height= h,
     legend=dict(y=1)
 )
 
-# Plot 2 - Pie chart of Category
-fig2 = px.pie(
-    plots_df,
-    names='category',
-    values='name',
-    color_discrete_sequence=px.colors.qualitative.Set2
-)
+fig1.update_traces(marker_line_color='black', marker_line_width=1.3)
+
+
+#Plot 2 - Pie chart of Category
+
+plots_df = pd.DataFrame()
+plots_df = df.groupby('category').count().reset_index().loc[: , ['category','name']]
+
+# Filtering to show only a count with 10 or more
+plots_df = plots_df[plots_df['name']>9]
+
+
+# Creating a Pie Chart - Count Category
+fig2 = px.pie(plots_df, names ='category', values = 'name', color_discrete_sequence=px.colors.qualitative.Set2)
 fig2.update_layout(
     title='Count Category',
     xaxis_title='',
     yaxis_title='',
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
-    width=w,
-    height=h,
-    legend=dict(y=0.95, x=1)
+    width= w,
+    height= h,
+    legend=dict(y=0.95,x=1)
 )
 
-# Plot 3: Top 5 authors - Pie Chart
-fig3 = px.pie(
-    plots_df[0:6],
-    names='author',
-    values='count',
-    color_discrete_sequence=px.colors.qualitative.Set3
-)
-fig3.update_layout(
-    title='Top 5 Authors with the most published books',
-    xaxis_title='',
-    yaxis_title='',
-    plot_bgcolor='white',
-    legend=dict(y=0.95, x=0),
-    width=w,
-    height=h
-)
 
-# Plot 4 - Sub-category, Filtered, 10 and above
-fig4 = px.pie(
-    plots_df,
-    names='sub_category',
-    values='name',
-    color_discrete_sequence=px.colors.qualitative.Prism
-)
-fig4.update_layout(
-    title='Sub Category Count',
-    xaxis_title='',
+# Add black marker line color
+fig2.update_traces(marker_line_color='black', marker_line_width=0.8)
+
+#Plot 3: Top 5 authors - Pie Chart
+plots_df = pd.DataFrame()
+plots_df = df.groupby('author').count()['name'].sort_values(ascending=False).reset_index()
+plots_df.columns = ['author', 'count']
+
+fig3 = px.pie(plots_df[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
+fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',plot_bgcolor = 'white',legend=dict(y=0.95,x=0),
+    width= w,
+    height= h)
+
+# Add black marker line color
+fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
+
+# plot 4 - sub category , Filtered , 10 and above
+plots_df = pd.DataFrame
+plots_df = df.groupby('sub_category').count().reset_index().loc[: , ['sub_category', 'name']]
+plots_df = plots_df[plots_df['name'] > 9]
+
+fig4 = px.pie(plots_df, names = 'sub_category', values = 'name', color_discrete_sequence = px.colors.qualitative.Prism)
+
+fig4.update_layout(title='Sub Category Count', xaxis_title='',
     yaxis_title='',
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
-    legend=dict(y=0.95, x=1),
-    width=w,
-    height=h
+    legend=dict(y=0.95,x=1),
+    width= w,
+    height= h
 )
 
+# Add black marker line color
+fig4.update_traces(marker_line_color='black', marker_line_width=0.8)
+
+#### END OF PLOTS
 
 
 # Data insights button
