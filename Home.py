@@ -116,7 +116,7 @@ plots_df.columns = ['author', 'count']
 
 fig3 = px.pie(plots_df[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
 fig3.update_layout(
-    title='Top 5 Authors with the\n most published books',
+    title='Top 5 Authors\nwith the most published books',
     xaxis_title='',
     yaxis_title='',
     plot_bgcolor='white',
@@ -127,6 +127,7 @@ fig3.update_layout(
     title_y=0.95,  # Set the title's y-position (adjust as needed)
     legend=dict(y=1)  # Set the legend's y-position to 1 (top position)
 )
+
 # Add black marker line color
 fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
 
