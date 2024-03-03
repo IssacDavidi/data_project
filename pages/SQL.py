@@ -25,7 +25,7 @@ def sql_query(query):
     new_df = pysqldf(query)
     return st.dataframe(new_df)
 
-query = st.text_area('please input a query', 'SELECT * FROM df LIMIT 5')
+query = st.text_area('please input a query', 'SELECT * FROM df LIMIT 5;')
 if st.button('Run'):
   sql_query(query)
   
