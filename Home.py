@@ -158,8 +158,8 @@ if st.button('Toggle insights'):
 if st.session_state.show_insights:
     # Header 1
     st.header('Data insights')
-    with st.container:
-        X
+    with st.container():
+        
         
 
         mcol1, mcol2, mcol3, mcol4= st.columns(4) # Metrics columns
