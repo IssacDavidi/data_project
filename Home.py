@@ -10,7 +10,6 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 init_notebook_mode(connected=True)
 cf.go_offline()
 
-
 st.set_page_config(layout="centered")
 
 
@@ -64,21 +63,21 @@ plots_df['Normal'] = df['price_physical']
 plots_df['Membership'] = df['price_club_physical']
 group = ['Normal','Membership']
 
-fig1 = px.bar(plots_df[['Normal', 'Membership']].mean(), orientation='h',
+fig1 = px.bar(plots_df[['Normal', 'Membership']].mean(), orientation='v',
             color = group,color_discrete_map = {'Normal': 'coral', 'Membership': '#007777'})
 
 # Update the layout for better appearance
 
 fig1.update_layout(
     title='Average Prices of Books',
-    xaxis_title='',
+     xaxis_title='',
     yaxis_title='',
-    plot_bgcolor='rgba(0,0,0,0)',
-    paper_bgcolor='rgba(0,0,0,0)',
-    width= w,
-    height= h,
-    legend=dict(y=1)
-)
+    width=w,
+    height=h,  # Adjust the margins as needed
+    title_x=0,  # Set the title's x-position to the center
+    title_y=1,  # Set the title's y-position (adjust as needed)
+    legend=dict(y=0.5,x = 1,traceorder='normal', orientation='v'),# Set the legend's y-position to 1 (top position)
+    title_font=dict(size=24))
 
 fig1.update_traces(marker_line_color='black', marker_line_width=1.3)
 
@@ -89,21 +88,32 @@ plots_df = pd.DataFrame()
 plots_df = df.groupby('category').count().reset_index().loc[: , ['category','name']]
 
 # Filtering to show only a count with 10 or more
-plots_df = plots_df[plots_df['name']>9]
+plots_df = plots_df[plots_df['name']>15]
 
 
 # Creating a Pie Chart - Count Category
 fig2 = px.pie(plots_df, names ='category', values = 'name', color_discrete_sequence=px.colors.qualitative.Set2)
 fig2.update_layout(
-    title='Count Category',
-    xaxis_title='',
+    title='Category-wise Book Count',
+     xaxis_title='',
     yaxis_title='',
-    plot_bgcolor='rgba(0,0,0,0)',
-    paper_bgcolor='rgba(0,0,0,0)',
-    width= w,
-    height= h,
-    legend=dict(y=0.95,x=1)
-)
+    plot_bgcolor='white',
+    width=w,
+    height=h,
+    margin=dict(l=0, r=0, t=50, b=0),  # Adjust the margins as needed
+    title_x=0,  # Set the title's x-position to the center
+    title_y=0.69,  # Set the title's y-position (adjust as needed)
+    legend=dict(y=0.5,x = 1,traceorder='normal', orientation='v'),# Set the legend's y-position to 1 (top position)
+    title_font=dict(size=24),    
+    annotations=[
+        dict(
+            text='Fig 2: Translated fiction books stand out<br>as the most common subcategory.',
+            xref='paper', yref='paper',
+            x=0.18, y=0.15,  # Adjust the position of the subtitle
+            showarrow=False,
+            font=dict(size=18)  # Adjust the font size of the subtitle
+        )
+    ])
 
 
 # Add black marker line color
@@ -116,7 +126,7 @@ plots_df.columns = ['author', 'count']
 
 fig3 = px.pie(plots_df[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
 fig3.update_layout(
-    title='Top 5 Authors\nwith the most published books',
+    title='Top 5 Authors<br>with the most published books',
     xaxis_title='',
     yaxis_title='',
     plot_bgcolor='white',
@@ -124,8 +134,18 @@ fig3.update_layout(
     height=h,
     margin=dict(l=0, r=0, t=50, b=0),  # Adjust the margins as needed
     title_x=0,  # Set the title's x-position to the center
-    title_y=0.6,  # Set the title's y-position (adjust as needed)
-    legend=dict(y=0.5)  # Set the legend's y-position to 1 (top position)
+    title_y=0.77,  # Set the title's y-position (adjust as needed)
+    legend=dict(y=0.5,x=1),# Set the legend's y-position to 1 (top position)
+    title_font=dict(size=24),
+    annotations=[
+        dict(
+            text='Pie Charts',
+            xref='paper', yref='paper',
+            x=0, y=0.97,  # Adjust the position of the subtitle
+            showarrow=False,
+            font=dict(size=32)  # Adjust the font size of the subtitle
+        )
+    ]
 )
 
 # Add black marker line color
@@ -134,21 +154,33 @@ fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
 # plot 4 - sub category , Filtered , 10 and above
 plots_df = pd.DataFrame
 plots_df = df.groupby('sub_category').count().reset_index().loc[: , ['sub_category', 'name']]
-plots_df = plots_df[plots_df['name'] > 9]
+plots_df = plots_df[plots_df['name'] > 20]
 
 fig4 = px.pie(plots_df, names = 'sub_category', values = 'name', color_discrete_sequence = px.colors.qualitative.Prism)
 
-fig4.update_layout(title='Sub Category Count', xaxis_title='',
+fig4.update_layout(title='Distribution of Books<br>by Subcategory',
+     xaxis_title='',
     yaxis_title='',
-    plot_bgcolor='rgba(0,0,0,0)',
-    paper_bgcolor='rgba(0,0,0,0)',
-    legend=dict(y=0.95,x=1),
-    width= w,
-    height= h
-)
+    plot_bgcolor='white',
+    width=w,
+    height=h,
+    margin=dict(l=0, r=0, t=50, b=0),  # Adjust the margins as needed
+    title_x=0,  # Set the title's x-position to the center
+    title_y=0.73,  # Set the title's y-position (adjust as needed)
+    legend=dict(y=0.5,x = 1,traceorder='normal', orientation='v'),# Set the legend's y-position to 1 (top position)
+    title_font=dict(size=24),    
+    annotations=[
+        dict(
+            text='Fig 2: Translated fiction books stand out<br>as the most common subcategory.',
+            xref='paper', yref='paper',
+            x=0.2, y=0.2,  # Adjust the position of the subtitle
+            showarrow=False,
+            font=dict(size=16)  # Adjust the font size of the subtitle
+        )
+    ])
 
 # Add black marker line color
-fig4.update_traces(marker_line_color='black', marker_line_width=0.8)
+fig4.update_traces(marker_line_color='black', marker_line_width=0.8,showlegend=True)
 
 #### END OF PLOTS
 
@@ -166,37 +198,34 @@ if st.button('Toggle insights'):
 if st.session_state.show_insights:
     # Header 1
     st.header('Data insights')
-    with st.container():
         
         
 
-        mcol1, mcol2, mcol3, mcol4= st.columns(4) # Metrics columns
+    mcol1, mcol2, mcol3, mcol4= st.columns(4) # Metrics columns
         #Physical Copies
-        with mcol1:
-            st.metric(label='Physical Copy', value = '97₪')
+    with mcol1:
+        st.metric(label='Physical Copy', value = '97₪')
 
-        with mcol2:
-            st.metric(label='Sale Price', value = '77₪', delta = '-20.6%', delta_color='inverse')
+    with mcol2:
+        st.metric(label='Sale Price', value = '77₪', delta = '-20.6%', delta_color='inverse')
 
-        #Digital
-        with mcol3:
-            st.metric(label='Digital Copy', value = '42₪', delta = '-56.7%', delta_color='inverse')
+    #Digital
+    with mcol3:
+        st.metric(label='Digital Copy', value = '42₪', delta = '-56.7%', delta_color='inverse')
 
-        with mcol4:
-            st.metric(label='Digital Sale', value = '33₪', delta= '-65.9%', delta_color='inverse')
-
-
+    with mcol4:
+        st.metric(label='Digital Sale', value = '33₪', delta= '-65.9%', delta_color='inverse')
 
 
 
-    col1, col2= st.columns(2)
-    with col1:
-        st.subheader('Pie Charts')
-        st.plotly_chart(fig3, use_container_width=True) # Top authors
-        st.plotly_chart(fig4, use_container_width=True) #Sub Category Count
-        st.subheader('Bar Charts')
-        st.plotly_chart(fig1, use_container_width=True) #Physical VS Digital
-        st.plotly_chart(fig2, use_container_width=True) # Count Categories
+
+
+    col1, col2, col3, col4, col5 = st.columns((1, 1, 5, 1,1 ))
+    with col3:
+        st.plotly_chart(fig3, use_container_width=True)# Top authors
+        st.plotly_chart(fig2, use_container_width=True) #Sub Category Count
+        st.plotly_chart(fig4, use_container_width=True) #Physical VS Digital
+        st.plotly_chart(fig1, use_container_width=True) # Count Categories
 
 
     
