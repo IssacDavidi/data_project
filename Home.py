@@ -10,7 +10,8 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 init_notebook_mode(connected=True)
 cf.go_offline()
 
-st.set_page_config(layout="centered")
+st.set_page_config(layout="centered",
+                  page_icon = '🏡')
 
 
 
