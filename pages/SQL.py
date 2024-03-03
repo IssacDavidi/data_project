@@ -2,7 +2,7 @@ import streamlit as st
 from sqlalchemy import create_engine
 import pandas as pd
 import os
-import pandasql
+from pandasql import sqldf
 
 
 
@@ -18,13 +18,12 @@ with col3:
   st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat1.png?raw=true', 'A beautiful cat', width=600)
 
 #Data info, steimatzky
-@st.cache_data
-def load_df(csv_loc):
-    df = pd.read_csv(csv_loc)
-    return df
-
-df = load_df('https://raw.githubusercontent.com/IssacDavidi/data_project/main/steimatzky_cleaned.csv')
-pysqldf = lambda q: sqldf(q,globals())
+def sql_query(query):
+    global df
+    pysqldf = lambda q: sqldf(q, globals())
+    df = pd.read_csv('https://raw.githubusercontent.com/IssacDavidi/data_project/main/steimatzky_cleaned.csv')
+    new_df = pysqldf(query)
+    return new_df
 
   
 
