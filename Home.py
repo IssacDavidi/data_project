@@ -56,7 +56,14 @@ st.write("<br>", unsafe_allow_html=True) # Spacing
 
 h = 600
 w = 300
-# Plot 1 - Average prices of books
+
+plots_df = pd.DataFrame()
+
+#Average price Normal VS Membership
+plots_df['Normal'] = df['price_physical']
+plots_df['Membership'] = df['price_club_physical']
+group = ['Normal','Membership']
+
 fig1 = px.bar(
     plots_df[['Normal', 'Membership']].mean(),
     orientation='h',
