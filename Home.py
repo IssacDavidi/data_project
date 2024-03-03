@@ -122,7 +122,10 @@ fig3.update_layout(
     plot_bgcolor='white',
     width=w,
     height=h,
-    margin=dict(l=0, r=50, t=50, b=0),  # Adjust the margins as needed
+    margin=dict(l=0, r=0, t=50, b=0),  # Adjust the margins as needed
+    title_x=0.5,  # Set the title's x-position to the center
+    title_y=0.95,  # Set the title's y-position (adjust as needed)
+    legend=dict(y=1)  # Set the legend's y-position to 1 (top position)
 )
 # Add black marker line color
 fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
