@@ -7,3 +7,4 @@ plotly
 SQLAlchemy
 streamlit
 streamlit_pandas
+streamlit-extras
