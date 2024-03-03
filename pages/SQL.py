@@ -25,6 +25,9 @@ def sql_query(query):
     new_df = pysqldf(query)
     return st.dataframe(new_df)
 
-sql_query('select name,author from df limit 2')
+query = st.text_area('please input a query')
+if st.button('Run'):
+  sql_query(query)
+  
   
 
