@@ -115,10 +115,15 @@ plots_df = df.groupby('author').count()['name'].sort_values(ascending=False).res
 plots_df.columns = ['author', 'count']
 
 fig3 = px.pie(plots_df[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
-fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',plot_bgcolor = 'white',
-    width= w,
-    height= h)
-
+fig3.update_layout(
+    title='Top 5 Authors with the most published books',
+    xaxis_title='',
+    yaxis_title='',
+    plot_bgcolor='white',
+    width=w,
+    height=h,
+    margin=dict(l=0, r=0, t=50, b=0),  # Adjust the margins as needed
+)
 # Add black marker line color
 fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
 
