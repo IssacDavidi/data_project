@@ -25,5 +25,6 @@ def sql_query(query):
     new_df = pysqldf(query)
     return new_df
 
+sql_query('select * from df limit 2')
   
 
