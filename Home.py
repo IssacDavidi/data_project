@@ -10,8 +10,8 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 init_notebook_mode(connected=True)
 cf.go_offline()
 
-# Set the page width to a larger value
-#st.set_page_config(layout="wide")
+
+st.set_page_config(layout="centered")
 
 
 
@@ -154,7 +154,6 @@ if st.button('Toggle insights'):
 
 # Show or hide data table based on button state
 if st.session_state.show_insights:
-    st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat3.png?raw=true', width = 200)
     # Header 1
     st.header('Data insights')
 
