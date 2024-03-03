@@ -75,11 +75,12 @@ fig1.update_layout(
     width=w,
     height=h,  # Adjust the margins as needed
     title_x=0,  # Set the title's x-position to the center
-    title_y=1,  # Set the title's y-position (adjust as needed)
-    legend=dict(y=0.5,x = 1,traceorder='normal', orientation='v'),# Set the legend's y-position to 1 (top position)
-    title_font=dict(size=24))
+    title_y=0.92,  # Set the title's y-position (adjust as needed)
+    legend=dict(y=0,x = 0.15,traceorder='normal', orientation='h'),# Set the legend's y-position to 1 (top position)
+    title_font=dict(size=24),
+     margin=dict(l=0, r=0, t=80, b=80))
 
-fig1.update_traces(marker_line_color='black', marker_line_width=1.3)
+fig1.update_traces(marker_line_color='black', marker_line_width=1.3,showlegend=False)
 
 
 #Plot 2 - Pie chart of Category
@@ -107,9 +108,9 @@ fig2.update_layout(
     title_font=dict(size=24),    
     annotations=[
         dict(
-            text='Fig 2: Translated fiction books stand out<br>as the most common subcategory.',
+            text='Fig 2: fiction books stand out<br>as the most common category.',
             xref='paper', yref='paper',
-            x=0.18, y=0.15,  # Adjust the position of the subtitle
+            x=0.3, y=0.15,  # Adjust the position of the subtitle
             showarrow=False,
             font=dict(size=18)  # Adjust the font size of the subtitle
         )
@@ -171,7 +172,7 @@ fig4.update_layout(title='Distribution of Books<br>by Subcategory',
     title_font=dict(size=24),    
     annotations=[
         dict(
-            text='Fig 2: Translated fiction books stand out<br>as the most common subcategory.',
+            text='Fig 3: Translated fiction books stand out<br>as the most common subcategory.',
             xref='paper', yref='paper',
             x=0.2, y=0.2,  # Adjust the position of the subtitle
             showarrow=False,
