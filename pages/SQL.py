@@ -25,6 +25,6 @@ def sql_query(query):
     new_df = pysqldf(query)
     return st.dataframe(new_df)
 
-sql_query('select * from df limit 2')
+sql_query('select name,author from df limit 2')
   
 
