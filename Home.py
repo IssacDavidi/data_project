@@ -221,7 +221,7 @@ if st.session_state.show_insights:
 
 
 
-    col1, col2, col3, col4, col5 = st.columns((1, 1, 5, 1,1 ))
+    col1, col2, col3, col4, col5 = st.beta_columns((1, 1, 5, 1,1 ))
     with col3:
         st.plotly_chart(fig3, use_container_width=True)# Top authors
         st.plotly_chart(fig2, use_container_width=True) #Sub Category Count
