@@ -64,8 +64,7 @@ plots_df['Normal'] = df['price_physical']
 plots_df['Membership'] = df['price_club_physical']
 group = ['Normal','Membership']
 
-fig1 = px.bar(plots_df[['Normal', 'Membership']].mean(), orientation='h',  
-             width=800, height=400,
+fig1 = px.bar(plots_df[['Normal', 'Membership']].mean(), orientation='h',
             color = group,color_discrete_map = {'Normal': 'coral', 'Membership': '#007777'})
 
 # Update the layout for better appearance
@@ -116,7 +115,7 @@ plots_df = df.groupby('author').count()['name'].sort_values(ascending=False).res
 plots_df.columns = ['author', 'count']
 
 fig3 = px.pie(plots_df[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
-fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',plot_bgcolor = 'white',legend=dict(y=0.95,x=0),
+fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',plot_bgcolor = 'white',legend=dict(y=0.95),
     width= w,
     height= h)
 
