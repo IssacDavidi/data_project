@@ -10,7 +10,7 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 init_notebook_mode(connected=True)
 cf.go_offline()
 
-
+st. set_page_config(layout="wide")
 # Set the page width to a larger value
 #st.set_page_config(layout="wide")
 
