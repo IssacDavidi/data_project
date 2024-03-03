@@ -23,7 +23,7 @@ def sql_query(query):
     pysqldf = lambda q: sqldf(q, globals())
     df = pd.read_csv('https://raw.githubusercontent.com/IssacDavidi/data_project/main/steimatzky_cleaned.csv')
     new_df = pysqldf(query)
-    return new_df
+    return st.dataframe(new_df)
 
 sql_query('select * from df limit 2')
   
