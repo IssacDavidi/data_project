@@ -54,32 +54,34 @@ st.write("<br>", unsafe_allow_html=True) # Spacing
 
 ########### PLOTS
 
-h = 600
-w = 300
+h = 400
+w = 800
 #Plot 1 - Average prices of books
 
+# Plot 1 - Average prices of books
 plots_df_1 = pd.DataFrame()
 plots_df_1['Normal'] = df['price_physical']
 plots_df_1['Membership'] = df['price_club_physical']
 group = ['Normal', 'Membership']
 
 fig1 = px.bar(plots_df_1[['Normal', 'Membership']].mean(), orientation='h',
-              width=800, height=400,
+              width=w, height=h,
               color=group, color_discrete_map={'Normal': 'coral', 'Membership': '#007777'})
 
-# Update the layout for better appearance
 fig1.update_layout(
     title='Average Prices of Books',
     xaxis_title='',
     yaxis_title='',
     plot_bgcolor='rgba(0,0,0,0)',
     paper_bgcolor='rgba(0,0,0,0)',
-    width=w,
-    height=h,
-    legend=dict(y=1)
+    legend=dict(y=1),
+    margin=dict(l=10, r=10, t=10, b=10),
 )
 
 fig1.update_traces(marker_line_color='black', marker_line_width=1.3)
+
+# Add some space between plots
+st.write('<style>div.Widget.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 # Plot 2 - Pie chart of Category
 plots_df_2 = df.groupby('category').count().reset_index().loc[:, ['category', 'name']]
@@ -94,10 +96,10 @@ fig2.update_layout(
     paper_bgcolor='rgba(0,0,0,0)',
     width=w,
     height=h,
-    legend=dict(y=0.95, x=1)
+    legend=dict(y=0.95, x=1),
+    margin=dict(l=10, r=10, t=10, b=10),
 )
 
-# Add black marker line color
 fig2.update_traces(marker_line_color='black', marker_line_width=0.8)
 
 # Plot 3: Top 5 authors - Pie Chart
@@ -108,9 +110,10 @@ fig3 = px.pie(plots_df_3[0:6], names='author', values='count', color_discrete_se
 fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',
                    plot_bgcolor='white', legend=dict(y=0.95, x=0),
                    width=w,
-                   height=h)
+                   height=h,
+                   margin=dict(l=10, r=10, t=10, b=10),
+                   )
 
-# Add black marker line color
 fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
 
 # Plot 4 - Sub-category, Filtered, 10 and above
@@ -124,11 +127,12 @@ fig4.update_layout(title='Sub Category Count', xaxis_title='',
                    paper_bgcolor='rgba(0,0,0,0)',
                    legend=dict(y=0.95, x=1),
                    width=w,
-                   height=h
+                   height=h,
+                   margin=dict(l=10, r=10, t=10, b=10),
                    )
 
-# Add black marker line color
 fig4.update_traces(marker_line_color='black', marker_line_width=0.8)
+
 
 
 # Data insights button
