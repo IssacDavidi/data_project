@@ -5,10 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cufflinks as cf
 import plotly.express as px
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-
-init_notebook_mode(connected=True)
-cf.go_offline()
+from plotly.offline import download_plotlyjs, init_notebook_mode, plot, pilot
 hide_menu_style = '''
 <style>
 #mainMenu {visibility: hidden; }
@@ -16,7 +13,15 @@ footer {visibility: hidden;}
 </style>
 '''
 
-st.markdown(hide_menu_style, unsafe_allow_html = True)
+st.markdown(hide_menu_style, unsafe_allow_html=True)
+
+
+
+
+init_notebook_mode(connected=True)
+cf.go_offline()
+
+
 st.set_page_config(page_icon = '✨')
 
 # Title and explaination
