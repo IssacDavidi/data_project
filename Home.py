@@ -6,14 +6,6 @@ import matplotlib.pyplot as plt
 import cufflinks as cf
 import plotly.express as px
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, pilot
-hide_menu_style = '''
-<style>
-#mainMenu {visibility: hidden; }
-footer {visibility: hidden;}
-</style>
-'''
-
-st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 
 
