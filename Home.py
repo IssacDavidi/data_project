@@ -9,7 +9,14 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 
 init_notebook_mode(connected=True)
 cf.go_offline()
+hide_menu_style = '''
+<style>
+#mainMenu {visibility: hidden; }
+footer {visibility: hidden;}
+</style>
+'''
 
+st.markdown(hide_menu_style, unsafe_allow_html = True)
 st.set_page_config(page_icon = '✨')
 
 # Title and explaination
