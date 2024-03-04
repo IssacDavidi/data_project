@@ -124,6 +124,6 @@ st.plotly_chart(fig2, use_container_width=True)  # Sub Category Count
 st.write('Fig 2: fiction books stand out<br>as the most common category.')
 st.plotly_chart(fig4, use_container_width=True)  # Physical VS Digital
 st.write('Fig 3: Translated fiction books stand out as the most common subcategory.')
-st.plotly_chart(fig1, use_container_width=True)  # Count Categories
+#st.plotly_chart(fig1, use_container_width=True)  # Count Categories
 
 
