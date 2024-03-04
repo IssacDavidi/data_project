@@ -116,7 +116,10 @@ with mcol3:
 with mcol4:
      st.metric(label='Digital Sale', value='33₪', delta='-65.9%', delta_color='inverse')
 
-st.image('https://github.com/IssacDavidi/data_project/blob/main/plots/newplot%20(2).png?raw=true')
+st.image('https://github.com/IssacDavidi/data_project/blob/main/plots/newplot%20(2).png?raw=true', caption= 'Fig1: the author with the most published books is Dana Levi.')
+st.image('https://github.com/IssacDavidi/data_project/blob/main/plots/newplot%20(3).png?raw=true', caption= 'Fig 2: fiction books stand out<br>as the most common category.')
+st.image('https://github.com/IssacDavidi/data_project/blob/main/plots/newplot%20(4).png?raw=true', caption= 'Fig 3: Translated fiction books stand out as the most common subcategory.')
+
 #st.plotly_chart(fig3, use_container_width=True)  # Top authors
 #st.write('Fig1: the author with the most published books is Dana Levi.')
 #st.plotly_chart(fig2, use_container_width=True)  # Sub Category Count
