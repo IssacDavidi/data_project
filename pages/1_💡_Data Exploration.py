@@ -99,7 +99,7 @@ fig4.update_traces(marker_line_color='black', marker_line_width=0.8, showlegend=
 
 # Insights button trigger
     # Header 1
-colored_header(label =':orange[Data] insights', color_name="violet-70" , description ="")
+colored_header(label ='Data Exploration', color_name="violet-70" , description ="")
 
 mcol1, mcol2, mcol3, mcol4 = st.columns(4)  # Metrics columns
 # Physical Copies
