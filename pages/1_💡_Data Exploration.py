@@ -13,7 +13,10 @@ import csv
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 
 
-
+st.set_page_config(
+    page_title="💡Insights💡",
+    layout="wide",
+    initial_sidebar_state="expanded")
 
 
 
