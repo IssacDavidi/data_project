@@ -15,7 +15,7 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 
 st.set_page_config(
     page_title="💡Insights💡",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded")
 
 
