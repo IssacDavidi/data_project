@@ -81,6 +81,7 @@ if st.session_state.show_data_table:
                #st.write('description - what is the book about')
         switch_p()
         
+        
         except:
             st.error(':x: An error occoured running the query provided')
     
