@@ -25,7 +25,6 @@ cf.go_offline()
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 #SQL query, steimatzky dataset
-@st.cache_data
 def sql_query(query):
     global new_df
     global sql_df
@@ -33,6 +32,56 @@ def sql_query(query):
     sql_df = pd.read_csv('https://raw.githubusercontent.com/IssacDavidi/data_project/main/steimatzky_cleaned.csv')
     new_df = pysqldf(query)
     return st.dataframe(new_df)
+
+
+# Plots
+# data for plots
+@st.cache_data
+def load_df(csv_loc):
+    df = pd.read_csv(csv_loc)
+    return df
+
+df = load_df('https://raw.githubusercontent.com/IssacDavidi/data_project/main/steimatzky_cleaned.csv')
+
+# Plot 3: Top 5 authors - Pie Chart
+plots_df_3 = df.groupby('author').count()['name'].sort_values(ascending=False).reset_index()
+plots_df_3.columns = ['author', 'count']
+
+fig3 = px.pie(plots_df_3[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
+fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',
+                   plot_bgcolor='white', legend=dict(y=0.95, x=0))
+
+# Add black marker line color
+fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Title and explaination
