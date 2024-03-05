@@ -77,6 +77,6 @@ if st.session_state.show_data_table:
         except:
             st.error(':x: An error occoured running the query provided')
     if st.button('Next Page'):
-        switch_page('SQL')
+        st.switch_page('SQL')
 
 # REWRITE THE CODE WITH SESSION STATE FOR EACH BUTTON
