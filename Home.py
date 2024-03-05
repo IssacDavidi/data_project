@@ -80,6 +80,7 @@ if st.session_state.show_data_table:
                #st.write('description - what is the book about')
         except:
             st.error(':x: An error occoured running the query provided')
-    switch_p()
+    
 
 # REWRITE THE CODE WITH SESSION STATE FOR EACH BUTTON
+switch_p()
