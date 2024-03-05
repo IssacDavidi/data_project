@@ -52,6 +52,7 @@ if "button" not in st.session_state:
 # Get Started trigger
 if st.session_state.show_data_table:
 
+
     query = st.text_area('Please provide a SQL query', '''SELECT * 
         FROM sql_df
         LIMIT 5;
@@ -68,6 +69,7 @@ if st.session_state.show_data_table:
        ''')
         except:
             st.error(':x: An error occoured running the query provided')
+    if st.button('Next Page'):
+        switch_page('SQL')
 
-
-
+# REWRITE THE CODE WITH SESSION STATE FOR EACH BUTTON
