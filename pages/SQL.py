@@ -2,6 +2,7 @@ import streamlit as st
 from sqlalchemy import create_engine
 from streamlit_extras.switch_page_button import switch_page
 from streamlit_extras.colored_header import colored_header 
+import streamlit_extras
 import pandas as pd
 from pandasql import sqldf
 import numpy as np
@@ -39,48 +40,6 @@ def sql_query(query):
 def load_df(csv_loc):
     df = pd.read_csv(csv_loc)
     return df
-
-df = load_df('https://raw.githubusercontent.com/IssacDavidi/data_project/main/steimatzky_cleaned.csv')
-
-# Plot 3: Top 5 authors - Pie Chart
-plots_df_3 = df.groupby('author').count()['name'].sort_values(ascending=False).reset_index()
-plots_df_3.columns = ['author', 'count']
-
-fig3 = px.pie(plots_df_3[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
-fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',
-                   plot_bgcolor='white', legend=dict(y=0.95, x=0))
-
-# Add black marker line color
-fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Title and explaination
@@ -134,17 +93,17 @@ if st.button('Run query'):
     try:
         sql_query(query)
         st.success(f'Query ran successfully! returned {len(new_df)} rows and {len(new_df.columns)} columns.', icon = '✅')
-        if type_query == 'Top 5 Authors':
-            pass
+       # if type_query == 'Top 5 Authors':
+        #    pass
             #st.bar_chart(data = new_df ,y = new_df.columns[0], x = new_df.columns[1], use_container_width=True)
-        elif type_query == 'Common Category':
-            pass
+      #  elif type_query == 'Common Category':
+       #     pass
             #st.scatter_chart(data = new_df ,y = new_df.columns[1], x = new_df.columns[0], use_container_width=True)
-        elif type_query == 'Common Sub Category':
-            pass
+     #   elif type_query == 'Common Sub Category':
+      #      pass
             #st.scatter_chart(data = new_df ,y = new_df.columns[1], x = new_df.columns[0], use_container_width=True)
-        elif type_query == 'Price Comparison':
-            pass
+      #  elif type_query == 'Price Comparison':
+      #      pass
             #st.scatter_chart(data = new_df ,y = new_df.columns[2], x = new_df.columns[1],color = new_df.columns[3], use_container_width=True)
     except:
         st.error(':x: An error occoured running the query provided')
