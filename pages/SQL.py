@@ -36,7 +36,7 @@ def sql_query(query):
 
 
 # Plots
-# data for plots
+@st.cache_data
 def load_df(csv_loc):
     df = pd.read_csv(csv_loc)
     return df
@@ -74,9 +74,11 @@ order by sub_category_count desc
 LIMIT 10;'''
 
 elif type_query == 'Price Comparison':
-    query_text = '''select 'עותק פיזי יותר יקר ב-' ||ROUND(((ROUND(AVG(price_physical))/ROUND(AVG(price_digital))) - 1) *100,2) || '%' as precent_change,
-ROUND(AVG(price_physical)) as avg_physical_price, 
-ROUND(AVG(price_digital))  as  avg_digital_price,
+    query_text = '''select
+ROUND(AVG(price_physical)) as physical_price, 
+ROUND(AVG(price_digital))  as  digital_price,
+ROUND(AVG(price_sale_physical))  as  sale_physical,
+ROUND(AVG(price_sale_digital))  as  sale_digital,
 category
 from sql_df
 group by category'''
@@ -93,18 +95,28 @@ if st.button('Run query'):
     try:
         sql_query(query)
         st.success(f'Query ran successfully! returned {len(new_df)} rows and {len(new_df.columns)} columns.', icon = '✅')
-       # if type_query == 'Top 5 Authors':
-        #    pass
-            #st.bar_chart(data = new_df ,y = new_df.columns[0], x = new_df.columns[1], use_container_width=True)
-      #  elif type_query == 'Common Category':
-       #     pass
-            #st.scatter_chart(data = new_df ,y = new_df.columns[1], x = new_df.columns[0], use_container_width=True)
-     #   elif type_query == 'Common Sub Category':
-      #      pass
-            #st.scatter_chart(data = new_df ,y = new_df.columns[1], x = new_df.columns[0], use_container_width=True)
-      #  elif type_query == 'Price Comparison':
-      #      pass
-            #st.scatter_chart(data = new_df ,y = new_df.columns[2], x = new_df.columns[1],color = new_df.columns[3], use_container_width=True)
+        if type_query == 'Top 5 Authors':
+            st.write(':blue[Dana Levi has the highest number of books in our dataset.]')
+        if type_query == 'Price Comparison':
+
+
+            with st.container():
+                st.write(':blue[Here are the metrics indicating the average price for each column.]')
+                mcol1, mcol2, mcol3, mcol4 = st.columns(4)  # Metrics columns
+                
+                # Physical Copies
+                with mcol1:
+                    st.metric(label=':orange[Physical Copy]', value='97₪')
+                
+                with mcol2:
+                    st.metric(label=':orange[Sale Price]', value='77₪', delta='-20.6%', delta_color='inverse')
+                
+                # Digital
+                with mcol3:
+                    st.metric(label=':orange[Digital Copy]', value='42₪', delta='-56.7%', delta_color='inverse')
+                
+                with mcol4:
+                    st.metric(label=':orange[Digital Sale]', value='33₪', delta='-65.9%', delta_color='inverse')
     except:
         st.error(':x: An error occoured running the query provided')
 
