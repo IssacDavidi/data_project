@@ -36,7 +36,6 @@ def sql_query(query):
 
 # Plots
 # data for plots
-@st.cache_data
 def load_df(csv_loc):
     df = pd.read_csv(csv_loc)
     return df
