@@ -17,6 +17,10 @@ cf.go_offline()
 
 st.set_page_config(page_icon = '✨', page_title='👉Books Project📚')
 
+def switch_p():
+    next_button = st.button("I want to contribute!")
+    if next_button:
+        switch_page("insights")
 
 
 
@@ -76,7 +80,6 @@ if st.session_state.show_data_table:
                #st.write('description - what is the book about')
         except:
             st.error(':x: An error occoured running the query provided')
-    if st.button('Next Page'):
-        switch_page('SQL')
+    switch_p()
 
 # REWRITE THE CODE WITH SESSION STATE FOR EACH BUTTON
