@@ -18,7 +18,7 @@ cf.go_offline()
 st.set_page_config(page_icon = '✨', page_title='👉Books Project📚')
 
 def switch_p():
-    next_button = st.button("I want to contribute!")
+    next_button = st.button("Next Page")
     if next_button:
         switch_page("insights")
 
@@ -62,6 +62,7 @@ if st.session_state.show_data_table:
         LIMIT 5;
         ''')
     if st.button('Run query'):
+        
         try:
             sql_query(query)
             st.success(f'Query ran successfully! returned {len(new_df)} rows and {len(new_df.columns)} columns.', icon = '✅')
@@ -78,9 +79,11 @@ if st.session_state.show_data_table:
                #st.write('price physical - the price for a physical copy of a book')
                #st.write('price digital - same for digital copy')
                #st.write('description - what is the book about')
+        switch_p()
+        
         except:
             st.error(':x: An error occoured running the query provided')
     
 
 # REWRITE THE CODE WITH SESSION STATE FOR EACH BUTTON
-switch_p()
+
