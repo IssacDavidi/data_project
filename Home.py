@@ -64,9 +64,16 @@ if st.session_state.show_data_table:
 
             with st.expander('What is this table?'):
                 st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat2.jpg?raw=true', width=110)
+                st.subheader('General info', divider='rainbow')
                 st.write('''👉 This table contains 10 columns and 978 rows, obtained from the Steimatzky website through a web scraping and ETL (Extract, Transform, Load) procedure with Python.
-                 Each row represents a book available in both physical and digital formats. Any missing values ❌ were filled with averages.
+                 Each row represents a book available in both physical and digital formats. Any missing values were filled with averages values. 
        ''')
+               #st.subheader('How this project made', divider='rainbow')
+               #st.write('name - The book name')
+               #st.write('author - the person who wrote the book')
+               #st.write('price physical - the price for a physical copy of a book')
+               #st.write('price digital - same for digital copy')
+               #st.write('description - what is the book about')
         except:
             st.error(':x: An error occoured running the query provided')
     if st.button('Next Page'):
