@@ -76,7 +76,7 @@ if st.session_state.show_data_table:
                #st.write('description - what is the book about')
         except:
             st.error(':x: An error occoured running the query provided')
-    if st.button('Next Page'):
-        st.switch_page('SQL')
+    if st.button("Next Page"):
+        st.switch_page("SQL.py")
 
 # REWRITE THE CODE WITH SESSION STATE FOR EACH BUTTON
