@@ -136,16 +136,17 @@ if st.button('Run query'):
         sql_query(query)
         st.success(f'Query ran successfully! returned {len(new_df)} rows and {len(new_df.columns)} columns.', icon = '✅')
         if type_query == 'Top 5 Authors':
-            st.bar_chart(data = new_df ,y = new_df.columns[0], x = new_df.columns[1], use_container_width=True)
+            pass
+            #st.bar_chart(data = new_df ,y = new_df.columns[0], x = new_df.columns[1], use_container_width=True)
         elif type_query == 'Common Category':
-            st.write(new_df.columns)
+            pass
             #st.scatter_chart(data = new_df ,y = new_df.columns[1], x = new_df.columns[0], use_container_width=True)
         elif type_query == 'Common Sub Category':
-            st.write(new_df.columns)
+            pass
             #st.scatter_chart(data = new_df ,y = new_df.columns[1], x = new_df.columns[0], use_container_width=True)
         elif type_query == 'Price Comparison':
+            pass
             #st.scatter_chart(data = new_df ,y = new_df.columns[2], x = new_df.columns[1],color = new_df.columns[3], use_container_width=True)
-            st.write(new_df.columns)
     except:
         st.error(':x: An error occoured running the query provided')
 
