@@ -35,6 +35,101 @@ def sql_query(query):
     return st.dataframe(new_df)
 
 
+########### PLOTS
+@st.cache_data
+def load_df(csv_loc):
+    df = pd.read_csv(csv_loc)
+    return df
+
+df = load_df('https://raw.githubusercontent.com/IssacDavidi/data_project/main/steimatzky_cleaned.csv')
+
+w= 800
+h= 400
+# Plot 1 - Average prices of books
+plots_df_1 = pd.DataFrame()
+plots_df_1['Normal'] = df['price_physical']
+plots_df_1['Membership'] = df['price_club_physical']
+group = ['Normal', 'Mermbership']
+
+fig1 = px.bar(plots_df_1[['Normal', 'Membership']].mean(), orientation='h',
+              width=800, height=400,
+              color=group, color_discrete_map={'Normal': 'coral', 'Membership': '#007777'})
+
+# Update the layout for better appearance
+fig1.update_layout(
+    title='Average Prices of Books',
+    xaxis_title='',
+    yaxis_title='',
+    plot_bgcolor='rgba(0,0,0,0)',
+    paper_bgcolor='rgba(0,0,0,0)',
+    width=w,
+    height=h,
+    legend=dict(y=1)
+)
+
+fig1.update_traces(marker_line_color='black', marker_line_width=1.3)
+
+# Plot 2 - Pie chart of Category
+plots_df_2 = df.groupby('category').count().reset_index().loc[:, ['category', 'name']]
+plots_df_2 = plots_df_2[plots_df_2['name'] > 9]
+
+fig2 = px.pie(plots_df_2, names='category', values='name', color_discrete_sequence=px.colors.qualitative.Set2)
+fig2.update_layout(
+    title='Count Category',
+    xaxis_title='',
+    yaxis_title='',
+    plot_bgcolor='rgba(0,0,0,0)',
+    paper_bgcolor='rgba(0,0,0,0)',
+    width=w,
+    height=h,
+    legend=dict(y=0.95, x=1)
+)
+
+# Add black marker line color
+fig2.update_traces(marker_line_color='black', marker_line_width=0.8)
+
+# Plot 3: Top 5 authors - Pie Chart
+plots_df_3 = df.groupby('author').count()['name'].sort_values(ascending=False).reset_index()
+plots_df_3.columns = ['author', 'count']
+
+fig3 = px.pie(plots_df_3[0:6], names='author', values='count', color_discrete_sequence=px.colors.qualitative.Set3)
+fig3.update_layout(title='Top 5 Authors with the most published books', xaxis_title='', yaxis_title='',
+                   plot_bgcolor='white', legend=dict(y=0.95, x=0),
+                   width=w,
+                   height=h)
+
+# Add black marker line color
+fig3.update_traces(marker_line_color='black', marker_line_width=0.8)
+
+# Plot 4 - Sub-category, Filtered, 10 and above
+plots_df_4 = df.groupby('sub_category').count().reset_index().loc[:, ['sub_category', 'name']]
+plots_df_4 = plots_df_4[plots_df_4['name'] > 9]
+
+fig4 = px.pie(plots_df_4, names='sub_category', values='name', color_discrete_sequence=px.colors.qualitative.Prism)
+fig4.update_layout(title='Sub Category Count', xaxis_title='',
+                   yaxis_title='',
+                   plot_bgcolor='rgba(0,0,0,0)',
+                   paper_bgcolor='rgba(0,0,0,0)',
+                   legend=dict(y=0.95, x=1),
+                   width=w,
+                   height=h
+                   )
+
+# Add black marker line color
+fig4.update_traces(marker_line_color='black', marker_line_width=0.8)
+
+
+#Plot 5
+prices_df = df.loc[: , ['price_physical', 'price_sale_physical', 'price_digital', 'price_sale_digital']]
+fig5 = px.box(prices_df, y=prices_df.columns)
+
+
+#### END OF PLOTS
+
+
+
+
+
 # Plots
 @st.cache_data
 def load_df(csv_loc):
@@ -43,8 +138,8 @@ def load_df(csv_loc):
 
 
 # Title and explaination
-colored_header(label ='✨Welcome to SQL section.✨', color_name="violet-70" , description ="")  # Centered title
-st.write('This section will do its best to show sql skills')
+st.header('SQL Proficiency: A Showcase', divider = 'rainbow') # Centered title
+st.write('In this section, I showcase my proficiency in SQL through a series of queries and examples.')
 
 
 type_query = st.radio('Choose which Query would you like to run.',['Top 5 Authors','Common Category','Common Sub Category','Price Comparison','String Concatenation'])
@@ -81,13 +176,14 @@ ROUND(AVG(price_sale_physical))  as  sale_physical,
 ROUND(AVG(price_sale_digital))  as  sale_digital,
 category
 from sql_df
-group by category'''
+group by category;'''
 
 elif type_query == 'String Concatenation':
     query_text = '''select   '"' || name || '"'  || ' '||  'הוא ספר מאת' || ' ' || author || ' ' || 'ומחירו המלא הינו' || '  ' || price_physical || '₪'  as books_details
 from sql_df
 '''
-
+def viz():
+    st.subheader('Visualization', divider = 'orange')
 
 #query 1
 query = st.text_area('Please provide a SQL query', query_text, height = 150)
@@ -95,13 +191,24 @@ if st.button('Run query'):
     try:
         sql_query(query)
         st.success(f'Query ran successfully! returned {len(new_df)} rows and {len(new_df.columns)} columns.', icon = '✅')
+        if type_query == 'Common Category':
+            viz()
+            st.plotly_chart(fig2, use_container_width=True)
+            st.write(':blue[Fiction books stand out as the most common category.]')
+        if type_query == 'Common Sub Category':
+            viz()
+            st.plotly_chart(fig4, use_container_width=True)
+            st.write(':blue[Translated fiction books stand out as the most common subcategory.]')
         if type_query == 'Top 5 Authors':
+            viz()
+            st.plotly_chart(fig3, use_container_width=True)
             st.write(':blue[Dana Levi has the highest number of books in our dataset.]')
         if type_query == 'Price Comparison':
+            viz()
 
 
             with st.container():
-                st.write(':blue[Here are the metrics indicating the average price for each column.]')
+                st.write(':blue[Below are the metrics illustrating the average price for each column.]')
                 mcol1, mcol2, mcol3, mcol4 = st.columns(4)  # Metrics columns
                 
                 # Physical Copies
@@ -117,6 +224,7 @@ if st.button('Run query'):
                 
                 with mcol4:
                     st.metric(label=':orange[Digital Sale]', value='33₪', delta='-65.9%', delta_color='inverse')
+                st.plotly_chart(fig5)
     except:
         st.error(':x: An error occoured running the query provided')
 
