@@ -12,11 +12,11 @@ import os
 import csv
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 
+
 init_notebook_mode(connected=True)
 cf.go_offline()
 
 st.set_page_config(page_icon = '✨', page_title='👉Books Project📚')
-
 
 
 
@@ -34,9 +34,15 @@ if 'expander_triggered' not in st.session_state:
 
 
 # Title and explaination
-colored_header(label ='✨Welcome to my :blue[data analysis] project✨', color_name="violet-70" , description ="")  # Centered title
-st.write('This project aims to showcase proficiency in Python, SQL, and data analysis, specifically delving into the data of Steimatzky Books 📚')
-
+st.write("""
+<div style='background-color:#0E1117; padding:10px; border-radius:5px;'>
+<h2 style='color:#0E1117; text-align:center;'>
+<span style='color:#f5f5f5;'>Exploring the Bookshelf: An Insightful Analysis of Steimatzky's Book Catalog
+</h2>
+</div>
+""", unsafe_allow_html=True)
+st.subheader('',divider='rainbow')
+st.write(":orange[Project Overview:] This project demonstrates my proficiency in Python, SQL, and data analysis techniques. The primary focus is an in-depth exploration of Steimatzky Books' data, a prominent book retailer. Through this analysis, I aim to uncover valuable insights and patterns within Steimatzky's book catalog.")
 # Data table toggle
 # Initialize button state using st.session_state
 if 'show_data_table' not in st.session_state:
@@ -54,9 +60,9 @@ if st.session_state.show_data_table:
 
 
     query = st.text_area('Please provide a SQL query', '''SELECT * 
-        FROM sql_df
-        LIMIT 5;
-        ''')
+FROM sql_df
+LIMIT 5;
+''')
     if st.button('Run query'):
         try:
             sql_query(query)
@@ -64,16 +70,12 @@ if st.session_state.show_data_table:
 
             with st.expander('What is this table?'):
                 st.image('https://github.com/IssacDavidi/data_project/blob/main/photos/cat2.jpg?raw=true', width=110)
-                st.subheader('General info', divider='rainbow')
-                st.write('''👉 This table contains 10 columns and 978 rows, obtained from the Steimatzky website through a web scraping and ETL (Extract, Transform, Load) procedure with Python.
-                 Each row represents a book available in both physical and digital formats. Any missing values were filled with averages values. 
-       ''')
-               #st.subheader('How this project made', divider='rainbow')
-               #st.write('name - The book name')
-               #st.write('author - the person who wrote the book')
-               #st.write('price physical - the price for a physical copy of a book')
-               #st.write('price digital - same for digital copy')
-               #st.write('description - what is the book about')
+                st.subheader('👉General Info', divider='rainbow')
+                st.write('''- The data presented is a tabular format comprising 10 columns and 978 rows. It was acquired from the Steimatzky website through a web scraping and ETL (Extract, Transform, Load) process executed using Python programming language.''')
+                st.write('''- The data resides in a cloud environment, requiring the establishment of a new connection for every query execution to access and retrieve the relevant information.''')
+                st.write('''- Each row signifies a book that is obtainable in both physical and digital formats. Any missing data points were substituted with average values.''')
+                st.write('''- Terminology: Physical - a tangible book edition; Digital - an electronic version of a book.''')
+                st.write('''- For comprehensive insights into the methodologies employed in data collection and transformation, you can refer to my [GitHub repository.](https://github.com/IssacDavidi/data_project)''')
         except:
             st.error(':x: An error occoured running the query provided')
     if st.button("Next Page"):
