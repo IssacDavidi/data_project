@@ -30,7 +30,7 @@ def sql_query(query):
     global new_df
     global sql_df
     pysqldf = lambda q: sqldf(q, globals())
-    sql_df = pd.read_csv('https://raw.githubusercontent.com/IssacDavidi/data_project/main/steimatzky_cleaned.csv')
+    sql_df = pd.read_csv('https://raw.githubusercontent.com/IssacDavidi/data_project/main/ETL_py_files/steimatzky_cleaned.csv')
     new_df = pysqldf(query)
     return st.dataframe(new_df)
 
@@ -41,7 +41,7 @@ def load_df(csv_loc):
     df = pd.read_csv(csv_loc)
     return df
 
-df = load_df('https://raw.githubusercontent.com/IssacDavidi/data_project/main/steimatzky_cleaned.csv')
+df = load_df('https://raw.githubusercontent.com/IssacDavidi/data_project/main/ETL_py_files/steimatzky_cleaned.csv')
 
 w= 800
 h= 400
@@ -228,6 +228,5 @@ if st.button('Run query'):
     except:
         st.error(':x: An error occoured running the query provided')
 
-## TO DO : for each A B C in radio , each button change the sql text area text .
-# Maybe add graph based on condition
+
 
