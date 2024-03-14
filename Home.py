@@ -81,3 +81,39 @@ LIMIT 5;
     if st.button("Next Page"):
         switch_page('sql')
 
+# Footer
+
+footer="""<style>
+a:link, a:visited {
+  color: blue;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:hover, a:active {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #22242b;
+  color: white;
+  text-align: center;
+}
+</style>
+
+<div class="footer">
+  <p style="font-size: 4px"> </p>
+  <p style="font-size: 16px">
+    Copyright © 2024 Itzhak Davidi <br>
+    This project is for educational purposes only and should not be used for commercial purposes or distributed without permission.
+  </p>
+</div>
+"""
+
+st.markdown(footer, unsafe_allow_html=True)
